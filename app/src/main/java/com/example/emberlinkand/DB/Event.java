@@ -16,5 +16,18 @@ public class Event {
 
     @ColumnInfo(name = "event_name")
     public String eventName;
+    @ColumnInfo(name = "participant_limit")
+    public String participantLimit;
+    @ColumnInfo(name = "event_time")
+    public String eventTime;
+    @ColumnInfo(name = "event_venue")
+    public String eventvenue;
+
+    @ColumnInfo(name = "event_description")
+    public String eventDescription;
+
+    @ColumnInfo(name = "event_tag")
+    public String eventtag;
+
 
 }

@@ -45,10 +45,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextEventName"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:hint="Participants Limit"
-            android:padding="16dp"
-            android:layout_margin="8dp"
-            android:inputType="number" />
+            android:inputType="number"
+            android:padding="16dp" />
 
         <!-- EditText for Time of the Event -->
         <EditText
@@ -70,10 +73,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextTime"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:hint="Venue"
-            android:padding="16dp"
-            android:layout_margin="8dp"
-            android:inputType="text" />
+            android:inputType="text"
+            android:padding="16dp" />
 
         <!-- EditText for Event Description -->
         <EditText
@@ -81,11 +87,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextVenue"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:hint="Event Description"
-            android:padding="16dp"
-            android:layout_margin="8dp"
             android:inputType="textMultiLine"
-            android:minLines="3" />
+            android:minLines="3"
+            android:padding="16dp" />
 
         <!-- EditText for Tags -->
         <EditText
