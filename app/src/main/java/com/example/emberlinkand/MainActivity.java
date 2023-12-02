@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button CreateEventBtn = findViewById(R.id.CreateEventButton);
-
+        Button DashboardButton = findViewById(R.id.DashBoardButton);
         Button EventListButton = findViewById(R.id.EventListButton);
 
 
@@ -35,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start SecondActivity
                 Intent intent = new Intent(MainActivity.this, EventListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        DashboardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start SecondActivity
+                Intent intent = new Intent(MainActivity.this, DashBoardActivity.class);
                 startActivity(intent);
             }
         });
