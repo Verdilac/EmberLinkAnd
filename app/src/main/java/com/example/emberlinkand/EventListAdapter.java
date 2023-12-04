@@ -29,11 +29,10 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         notifyDataSetChanged();
     }
 
-
     @NonNull
     @Override
     public EventListAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_row,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.event_card_dash_board,parent,false);
 
         return  new MyViewHolder(view);
 
@@ -42,13 +41,9 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull EventListAdapter.MyViewHolder holder, int position) {
 
-        holder.tvOrganizerName.setText(this.eventList.get(position).organizerName);
-       holder.tvEventName.setText(this.eventList.get(position).eventName);
-        holder.tvEventParticipationLimit.setText(this.eventList.get(position).participantLimit);
-        holder.tvEventTime.setText(this.eventList.get(position).eventTime);
-        holder.tvEventVenue.setText(this.eventList.get(position).eventvenue);
-        holder.tvEventDescription.setText(this.eventList.get(position).eventDescription);
-        holder.tvEventTag.setText(this.eventList.get(position).eventtag);
+        holder.eventName.setText(this.eventList.get(position).eventName);
+        holder.eventLocation.setText(this.eventList.get(position).eventvenue);
+        holder.eventDate.setText(this.eventList.get(position).eventTime);
     }
 
     @Override
@@ -58,28 +53,15 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
     public  class MyViewHolder extends  RecyclerView.ViewHolder{
 
-        TextView  tvOrganizerName;
-        TextView  tvEventName;
-
-        TextView  tvEventParticipationLimit;
-        TextView  tvEventTime;
-        TextView  tvEventVenue;
-        TextView  tvEventDescription;
-
-        TextView tvEventTag;
-
+        TextView  eventName;
+        TextView  eventLocation;
+        TextView  eventDate;
 
         public MyViewHolder(View view){
             super(view);
-              tvOrganizerName =view.findViewById(R.id.tvOrganizerName);
-             tvEventName =view.findViewById(R.id.tvEventName);
-            tvEventParticipationLimit =view.findViewById(R.id.tvEventParticipationLimit);
-            tvEventTime =view.findViewById(R.id.tvEventTime);
-            tvEventVenue =view.findViewById(R.id.tvEventVenue);
-            tvEventDescription =view.findViewById(R.id.tvEventDescription);
-            tvEventTag =view.findViewById(R.id.tvEventTag);
-
-
+            eventName =view.findViewById(R.id.eventName);
+            eventLocation =view.findViewById(R.id.eventLocation);
+            eventDate =view.findViewById(R.id.eventDate);
         }
     }
 }
