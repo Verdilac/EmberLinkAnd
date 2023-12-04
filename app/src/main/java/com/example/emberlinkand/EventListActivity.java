@@ -24,20 +24,7 @@ public class EventListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
-
-
-        Button AddNewUserBtn = findViewById(R.id.AddNewEventBtn);
-
-
-        AddNewUserBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(EventListActivity.this,CreateEventActivity.class),100);
-            }
-        });
-
         initRecyclerView();
-
         loadEventList();
 
     }
