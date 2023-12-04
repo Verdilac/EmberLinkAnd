@@ -2,10 +2,13 @@ package com.example.emberlinkand;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.emberlinkand.DB.AppDatabase;
 import com.example.emberlinkand.DB.Event;
@@ -27,6 +30,19 @@ public class CreateEventActivity extends AppCompatActivity {
 
 
         Button submitButton = findViewById(R.id.SubmitBtn);
+
+        //toolbar back button
+        ImageView backButton = findViewById(R.id.toolbar_back_icon);
+        TextView toolbarText = findViewById(R.id.toolbar_text);
+        toolbarText.setText("Add New Event");
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateEventActivity.this, DashBoardActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
