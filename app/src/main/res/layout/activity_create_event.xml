@@ -1,127 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/newbkg"
     tools:context=".CreateEventForm">
 
-    <include layout="@layout/toolbar"></include>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="100dp">
+        android:orientation="vertical">
 
-        <!-- EditText for Name of person posting event -->
+        <include layout="@layout/toolbar"></include>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="10dp">
 
-        <!-- EditText for Event Name -->
-        <EditText
-            android:id="@+id/editTextName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Name of person posting event"
-            android:inputType="text"
-            android:padding="16dp" />
 
-        <EditText
-            android:id="@+id/editTextEventName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextName"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Event Name"
-            android:inputType="text"
-            android:padding="16dp" />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <!-- EditText for Participants Limit -->
-        <EditText
-            android:id="@+id/editTextParticipantsLimit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextEventName"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Participants Limit"
-            android:inputType="number"
-            android:padding="16dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="644dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/custom_edittext"
+                        android:orientation="vertical"
+                        android:padding="24dp">
 
-        <!-- EditText for Time of the Event -->
-        <EditText
-            android:id="@+id/editTextTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextParticipantsLimit"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Time of the Event"
-            android:inputType="text"
-            android:padding="16dp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Add Event"
+                            android:textSize="36sp"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:textColor="@color/orange" />
 
-        <!-- EditText for Venue -->
-        <EditText
-            android:id="@+id/editTextVenue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextTime"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Venue"
-            android:inputType="text"
-            android:padding="16dp" />
+                        <!-- EditText for Name of person posting event -->
 
-        <!-- EditText for Event Description -->
-        <EditText
-            android:id="@+id/editTextDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextVenue"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Event Description"
-            android:inputType="textMultiLine"
-            android:minLines="3"
-            android:padding="16dp" />
+                        <!-- EditText for Event Name -->
+                        <TextView
+                            android:id="@+id/title_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="Host" />
 
-        <!-- EditText for Tags -->
-        <EditText
-            android:id="@+id/editTextTags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextDescription"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Tags"
-            android:inputType="text"
-            android:padding="16dp" />
+                        <EditText
+                            android:id="@+id/editTextName"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/custom_edittext"
+                            android:drawablePadding="8dp"
+                            android:padding="8dp"
+                            android:textColor="@color/black"
+                            android:hint="Name of the Host"
+                            android:inputType="text" />
 
-        <!-- Button to submit data -->
-        <Button
-            android:id="@+id/SubmitBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:layout_below="@id/editTextTags"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp" />
 
-    </RelativeLayout>
+                        <TextView
+                            android:id="@+id/eventName_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="Event Name" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        <EditText
+                            android:id="@+id/editTextEventName"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/custom_edittext"
+                            android:inputType="text"
+                            android:drawablePadding="8dp"
+                            android:hint="Name of the Event"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <!-- EditText for Participants Limit -->
+                        <TextView
+                            android:id="@+id/limit_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="Participants Limit" />
+
+                        <EditText
+                            android:id="@+id/editTextParticipantsLimit"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/custom_edittext"
+                            android:inputType="number"
+                            android:drawablePadding="8dp"
+                            android:hint="Number of Participants"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <!-- EditText for Time of the Event -->
+                        <TextView
+                            android:id="@+id/eventTime_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="Hosting Time" />
+                        <EditText
+                            android:id="@+id/editTextTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/custom_edittext"
+                            android:drawablePadding="8dp"
+                            android:hint="Time of the Event"
+                            android:inputType="text"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <!-- EditText for Venue -->
+                        <TextView
+                            android:id="@+id/eventVenue_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="Venue" />
+                        <EditText
+                            android:id="@+id/editTextVenue"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/custom_edittext"
+                            android:drawablePadding="8dp"
+                            android:hint="Venue of the Event"
+                            android:inputType="text"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <!-- EditText for Event Description -->
+                        <TextView
+                            android:id="@+id/eventDesc_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="Description" />
+                        <EditText
+                            android:id="@+id/editTextDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/custom_edittext"
+                            android:drawablePadding="8dp"
+                            android:inputType="text"
+                            android:hint="Description of the Event"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <!-- EditText for Tags -->
+                        <TextView
+                            android:id="@+id/eventTags_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="Tags" />
+                        <EditText
+                            android:id="@+id/editTextTags"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/custom_edittext"
+                            android:drawablePadding="8dp"
+                            android:hint="Tags"
+                            android:inputType="text"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                        <!-- Button to submit data -->
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/SubmitBtn"
+                            android:text="Submit"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:layout_marginTop="30dp"
+                            android:backgroundTint="@color/red"
+                            android:background="@drawable/rounded_button"
+                            android:gravity="center_vertical" />
+
+                    </LinearLayout>
+                </ScrollView>
+            </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
