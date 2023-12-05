@@ -48,6 +48,10 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
     @Override
     public int getItemCount() {
+        if (this.eventList == null) {
+            return 0;
+        }
+
         return this.eventList.size();
     }
 

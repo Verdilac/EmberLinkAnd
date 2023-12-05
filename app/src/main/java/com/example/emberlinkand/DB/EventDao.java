@@ -1,5 +1,6 @@
 package com.example.emberlinkand.DB;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface EventDao {
 
     @Query("SELECT * FROM  event")
-    List<Event> getAllEvents();
+    LiveData<List<Event>> getAllEvents();
 
     @Insert
     void insertEvent(Event... event);

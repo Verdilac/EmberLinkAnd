@@ -1,6 +1,7 @@
 package com.example.emberlinkand;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.emberlinkand.DB.AppDatabase;
 import com.example.emberlinkand.DB.Event;
+import com.example.emberlinkand.DB.EventViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +24,14 @@ import java.util.List;
 public class DashBoardActivity extends AppCompatActivity {
 
     private EventListAdapter eventListAdapter;
+    private EventViewModel eventViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
         initRecyclerView();
-        loadEventList();
+        listenEventList();
 
         TextView createEventTextView = findViewById(R.id.dashBoardCreateEventBtn);
         TextView seeAllEventList = findViewById(R.id.seeAllEventsBtn);
@@ -73,13 +76,14 @@ public class DashBoardActivity extends AppCompatActivity {
         eventListAdapter = new EventListAdapter(this);
 
         recyclerView.setAdapter(eventListAdapter);
-
     }
 
-    public void loadEventList() {
-        AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
-        List<Event> eventList = db.eventDao().getAllEvents();
-        eventListAdapter.setEventList(eventList);
-    }
+    public void listenEventList() {
+        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
 
+        eventViewModel.getAllEvents().observe(this, eventList -> {
+            // Update the cached copy of the movies in the adapter.
+            eventListAdapter.setEventList(eventList);
+        });
+    }
 }
