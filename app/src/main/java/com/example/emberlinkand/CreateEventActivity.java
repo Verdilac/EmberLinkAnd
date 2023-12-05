@@ -57,10 +57,6 @@ public class CreateEventActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
     private  void saveNewEvent(String organizerName,String eventName,String eventParticipantLimit,String time,String venue,String description,String tag){
         EventViewModel eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);;
         Event event = new Event();

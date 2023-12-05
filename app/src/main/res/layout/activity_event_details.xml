@@ -6,6 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".EventDetailsActivity">
 
-    <include layout="@layout/toolbar"></include>
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar"></include>
+
+    <TextView
+        android:id="@+id/eventNameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EventName"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/eventDescriptionView"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        tools:layout_editor_absoluteX="172dp" />
+
+    <TextView
+        android:id="@+id/eventDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Description"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/participantLimitView"
+        app:layout_constraintTop_toBottomOf="@+id/eventNameView"
+        tools:layout_editor_absoluteX="151dp" />
+
+    <TextView
+        android:id="@+id/participantLimitView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Participant Limit"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/eventTimeView"
+        app:layout_constraintTop_toBottomOf="@+id/eventDescriptionView"
+        tools:layout_editor_absoluteX="157dp" />
+
+    <TextView
+        android:id="@+id/eventTimeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Time"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/organizerNameView"
+        app:layout_constraintTop_toBottomOf="@+id/participantLimitView"
+        tools:layout_editor_absoluteX="171dp" />
+
+    <TextView
+        android:id="@+id/organizerNameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Organizer Name"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/eventVenueView"
+        app:layout_constraintTop_toBottomOf="@+id/eventTimeView"
+        tools:layout_editor_absoluteX="172dp" />
+
+    <TextView
+        android:id="@+id/eventVenueView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Venue"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/organizerNameView3"
+        app:layout_constraintTop_toBottomOf="@+id/organizerNameView"
+        tools:layout_editor_absoluteX="167dp" />
+
+    <TextView
+        android:id="@+id/organizerNameView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Organizer Name"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/eventTagView"
+        app:layout_constraintTop_toBottomOf="@+id/eventVenueView"
+        tools:layout_editor_absoluteX="155dp" />
+
+    <TextView
+        android:id="@+id/eventTagView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Tag"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/organizerNameView3"
+        tools:layout_editor_absoluteX="183dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

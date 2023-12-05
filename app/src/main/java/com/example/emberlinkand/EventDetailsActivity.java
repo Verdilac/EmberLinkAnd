@@ -3,9 +3,7 @@ package com.example.emberlinkand;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +14,8 @@ import com.example.emberlinkand.DB.EventViewModel;
 public class EventDetailsActivity extends AppCompatActivity {
     private int eventId;
     private EventViewModel eventViewModel;
+
+    private Event event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +35,36 @@ public class EventDetailsActivity extends AppCompatActivity {
             }
         });
 
+        listenEventDetails();
+    }
+
+    private void listenEventDetails() {
         // Retrieve data from the intent
         eventId = getIntent().getIntExtra("EVENT_ID", -1);
         // Initialize ViewModel
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
         // Observe changes from the database
-        eventViewModel.getByEventID(eventId).observe(this, event -> {
-            initializeViews(event);
+        eventViewModel.getByEventID(eventId).observe(this, incomingEvent -> {
+            event = incomingEvent;
+            initializeViews();
         });
     }
 
-    private void initializeViews(Event event) {
-        Log.d("Event", event.eventName);
+    private void initializeViews() {
+        TextView eventName = findViewById(R.id.eventNameView);
+        TextView organizerName = findViewById(R.id.organizerNameView);
+        TextView eventParticipantLimit = findViewById(R.id.participantLimitView);
+        TextView eventDescription = findViewById(R.id.eventDescriptionView);
+        TextView eventTime = findViewById(R.id.eventTimeView);
+        TextView eventVenue = findViewById(R.id.eventVenueView);
+        TextView eventTag = findViewById(R.id.eventTagView);
+
+        eventName.setText(event.eventName);
+        organizerName.setText(event.organizerName);
+        eventParticipantLimit.setText(event.participantLimit);
+        eventDescription.setText(event.eventDescription);
+        eventTime.setText(event.eventTime);
+        eventVenue.setText(event.eventvenue);
+        eventTag.setText(event.eventtag);
     }
 }

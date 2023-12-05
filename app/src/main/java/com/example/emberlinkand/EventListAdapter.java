@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emberlinkand.DB.Event;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyViewHolder> {
@@ -73,7 +71,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
         public MyViewHolder(View view, EventListItemInterface eventListItemInterface){
             super(view);
-            eventName =view.findViewById(R.id.eventName);
+            eventName =view.findViewById(R.id.eventNameView);
             eventLocation =view.findViewById(R.id.eventLocation);
             eventDate =view.findViewById(R.id.eventDate);
             detailsButton = itemView.findViewById(R.id.moreDetailsBtn);
