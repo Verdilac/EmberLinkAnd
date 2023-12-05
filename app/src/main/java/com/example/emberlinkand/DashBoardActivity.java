@@ -33,7 +33,6 @@ public class DashBoardActivity extends AppCompatActivity {
         TextView createEventTextView = findViewById(R.id.dashBoardCreateEventBtn);
         TextView seeAllEventList = findViewById(R.id.seeAllEventsBtn);
 
-
         createEventTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +48,19 @@ public class DashBoardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+    }
+
+    // Adding the onClick event here so we don't get a null pointer exception when there are no
+    // items in the recycler view
+    public void onClickViewDetails(View view) {
+        Intent intent = new Intent(DashBoardActivity.this, EventDetailsActivity.class);
+        startActivity(intent);
     }
 
     private  void  initRecyclerView() {

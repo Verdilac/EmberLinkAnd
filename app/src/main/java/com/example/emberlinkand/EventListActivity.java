@@ -38,13 +38,18 @@ public class EventListActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EventListActivity.this, DashBoardActivity.class);
-                startActivity(intent);
+                // Go back to last screen on the stack
+                finish();
             }
         });
 
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+    }
 
     private  void  initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -57,6 +62,13 @@ public class EventListActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(eventListAdapter);
 
+    }
+
+    // Adding the onClick event here so we don't get a null pointer exception when there are no
+    // items in the recycler view
+    public void onClickViewDetails(View view) {
+        Intent intent = new Intent(EventListActivity.this, EventDetailsActivity.class);
+        startActivity(intent);
     }
 
     private  void loadEventList(){
