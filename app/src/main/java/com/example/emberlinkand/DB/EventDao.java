@@ -1,8 +1,10 @@
 package com.example.emberlinkand.DB;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -11,15 +13,16 @@ import java.util.List;
 public interface EventDao {
 
     @Query("SELECT * FROM  event")
-    List<Event> getAllEvents();
+    LiveData<List<Event>> getAllEvents();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertEvent(Event... event);
 
     @Delete
     void delete(Event event);
 
-
+    @Query("SELECT * FROM event WHERE uid=:id")
+    LiveData<Event> findByEventID(int id);
 }
 
 

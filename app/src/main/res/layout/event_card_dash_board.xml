@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardElevation="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:onClick="onClickViewDetails"
     app:cardCornerRadius="16dp"
-    tools:ignore="MissingDefaultResource"
-    android:layout_margin="5dp">
+    app:cardElevation="16dp"
+    tools:ignore="MissingDefaultResource">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,90 +26,95 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Event Name: "
-                    android:textSize="16dp"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
                 <TextView
-                    android:id="@+id/eventName"
+                    android:id="@+id/eventNameView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
             </LinearLayout>
-
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Event Location: "
-                    android:textSize="16dp"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/eventLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="20dp"
-                android:layout_gravity="center_vertical">
+                android:paddingBottom="20dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Event Date:"
-                    android:textSize="16dp"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/eventDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
 
 
                 <Button
                     android:id="@+id/moreDetailsBtn"
-                    android:backgroundTint="@color/red"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="More Event Details >>"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="10dp"
-                    android:onClick="onNextButtonClick"
-                    />
+                    android:backgroundTint="@color/red"
+                    android:onClick="onClickViewDetails"
+                    android:text="More Event Details >>" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
     </LinearLayout>
 
 

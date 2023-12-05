@@ -1,6 +1,7 @@
 package com.example.emberlinkand;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.emberlinkand.DB.AppDatabase;
 import com.example.emberlinkand.DB.Event;
+import com.example.emberlinkand.DB.EventViewModel;
 
 public class CreateEventActivity extends AppCompatActivity {
 
@@ -55,12 +57,8 @@ public class CreateEventActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
     private  void saveNewEvent(String organizerName,String eventName,String eventParticipantLimit,String time,String venue,String description,String tag){
-        AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
+        EventViewModel eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);;
         Event event = new Event();
         event.organizerName = organizerName;
         event.eventName = eventName;
@@ -70,10 +68,9 @@ public class CreateEventActivity extends AppCompatActivity {
         event.eventvenue = venue;
         event.eventtag = tag;
 
-        db.eventDao().insertEvent(event);
+        eventViewModel.insertEvent(event);
 
         finish();
-
     }
 
 }
