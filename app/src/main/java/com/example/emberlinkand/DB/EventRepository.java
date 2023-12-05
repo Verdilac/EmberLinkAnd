@@ -22,4 +22,16 @@ class EventRepository {
     LiveData<List<Event>> getAllEvents() {
         return allEvents;
     }
+
+    LiveData<Event> getByEventID(int eventID) {
+        return eventDao.findByEventID(eventID);
+    }
+
+    // You must call this on a non-UI thread or your app will throw an exception. Room ensures
+    // that you're not doing any long running operations on the main thread, blocking the UI.
+    void insertEvent(Event event) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            eventDao.insertEvent(event);
+        });
+    }
 }

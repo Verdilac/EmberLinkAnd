@@ -21,7 +21,7 @@ import com.example.emberlinkand.DB.EventViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashBoardActivity extends AppCompatActivity {
+public class DashBoardActivity extends AppCompatActivity implements EventListItemInterface {
 
     private EventListAdapter eventListAdapter;
     private EventViewModel eventViewModel;
@@ -53,19 +53,6 @@ public class DashBoardActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onRestart() {
-        super.onRestart();
-        //When BACK BUTTON is pressed, the activity on the stack is restarted
-    }
-
-    // Adding the onClick event here so we don't get a null pointer exception when there are no
-    // items in the recycler view
-    public void onClickViewDetails(View view) {
-        Intent intent = new Intent(DashBoardActivity.this, EventDetailsActivity.class);
-        startActivity(intent);
-    }
-
     private  void  initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -73,7 +60,7 @@ public class DashBoardActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration  = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        eventListAdapter = new EventListAdapter(this);
+        eventListAdapter = new EventListAdapter(this, this);
 
         recyclerView.setAdapter(eventListAdapter);
     }
@@ -85,5 +72,12 @@ public class DashBoardActivity extends AppCompatActivity {
             // Update the cached copy of the movies in the adapter.
             eventListAdapter.setEventList(eventList);
         });
+    }
+
+    @Override
+    public void onEventDetailsClick(int position) {
+        Intent intent = new Intent(DashBoardActivity.this, EventDetailsActivity.class);
+        intent.putExtra("EVENT_ID", eventListAdapter.getEventId(position));
+        startActivity(intent);
     }
 }

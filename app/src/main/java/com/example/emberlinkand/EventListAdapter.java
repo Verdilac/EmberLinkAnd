@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,8 +21,11 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     private Context context;
     private List<Event> eventList;
 
-    public EventListAdapter(Context context){
+    private final EventListItemInterface eventListItemInterface;
+
+    public EventListAdapter(Context context, EventListItemInterface eventListItemInterface){
         this.context = context;
+        this.eventListItemInterface = eventListItemInterface;
     }
 
     public void setEventList(List<Event> eventList){
@@ -29,12 +33,17 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         notifyDataSetChanged();
     }
 
+    public int getEventId(int position) {
+        Event current = this.eventList.get(position);
+        return current.uid;
+    }
+
     @NonNull
     @Override
     public EventListAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.event_card_dash_board,parent,false);
 
-        return  new MyViewHolder(view);
+        return  new MyViewHolder(view, this.eventListItemInterface);
 
     }
 
@@ -60,12 +69,27 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         TextView  eventName;
         TextView  eventLocation;
         TextView  eventDate;
+        Button detailsButton;
 
-        public MyViewHolder(View view){
+        public MyViewHolder(View view, EventListItemInterface eventListItemInterface){
             super(view);
             eventName =view.findViewById(R.id.eventName);
             eventLocation =view.findViewById(R.id.eventLocation);
             eventDate =view.findViewById(R.id.eventDate);
+            detailsButton = itemView.findViewById(R.id.moreDetailsBtn);
+
+            detailsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (eventListItemInterface != null) {
+                        int position = getBindingAdapterPosition();
+
+                        if(position != RecyclerView.NO_POSITION) {
+                            eventListItemInterface.onEventDetailsClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }
