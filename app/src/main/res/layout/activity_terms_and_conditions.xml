@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".TermsAndConditionsActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="410dp"
+                android:layout_height="48dp"
+                android:text="Acceptance of Terms"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="By accessing or using EmberLink, you agree to abide by these Terms and any additional terms and conditions that may apply to specific features or services. If you do not agree to these Terms, please refrain from using the app.  Description of Service EmberLink is a mobile application that connects individuals in the same geographical area based on shared interests, allowing users to create, discover, and attend events hosted by others with similar interests.  User Responsibilities a. Accurate Information: Users must provide accurate and up-to-date information when creating profiles or hosting events.  b. Respectful Conduct: Users are expected to behave respectfully towards others. Any form of harassment, hate speech, or abusive behavior will not be tolerated.  c. Safety: We prioritize user safety. However, users attend events at their own risk and should take necessary precautions for personal safety and security.  Events and Meetups a. Event Hosting: Users hosting events are responsible for the accuracy of event details, ensuring they align with community guidelines and local laws.  b. Participant Responsibility: Attendees are responsible for their conduct at events and should respect the host's rules and guidelines.  c. Liability: EmberLink is not liable for any damages, injuries, or disputes that arise during events or meetups organized through the app.  Privacy a. User Data: We collect and process user data as outlined in our Privacy Policy. By using EmberLink, you agree to our data practices.  b. Third-Party Services: Users may encounter links or services from third-party providers. These providers have their own terms and policies; users should review them before engaging.  Intellectual Property All content and materials on EmberLink, unless otherwise indicated, are the intellectual property of EmberLink. Users may not use, copy, or distribute any content without permission.  Termination We reserve the right to terminate or suspend accounts that violate these Terms or for any other reason deemed necessary to protect the community.  Modifications to Terms EmberLink may update these Terms periodically. Users will be notified of any changes, and continued use of the app after such modifications constitutes acceptance of the revised Terms.  Contact Information For questions, concerns, or feedback regarding these Terms, please contact us at EmberLink.com.  By using EmberLink, you acknowledge that you have read, understood, and agree to abide by these Terms and our Privacy Policy." />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClickAccept"
+                android:text="Accept" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDecline"
+                android:text="Decline" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
