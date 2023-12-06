@@ -34,4 +34,10 @@ class EventRepository {
             eventDao.insertEvent(event);
         });
     }
+
+    void deleteEvent(int uid) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            eventDao.delete(uid);
+        });
+    }
 }

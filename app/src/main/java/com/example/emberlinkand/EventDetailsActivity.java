@@ -3,6 +3,7 @@ package com.example.emberlinkand;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -59,12 +60,19 @@ public class EventDetailsActivity extends AppCompatActivity {
         TextView eventVenue = findViewById(R.id.eventVenueView);
         TextView eventTag = findViewById(R.id.eventTagView);
 
-        eventName.setText(event.eventName);
-        organizerName.setText(event.organizerName);
-        eventParticipantLimit.setText(event.participantLimit);
-        eventDescription.setText(event.eventDescription);
-        eventTime.setText(event.eventTime);
-        eventVenue.setText(event.eventvenue);
-        eventTag.setText(event.eventtag);
+        if(event != null) {
+            eventName.setText(event.eventName);
+            organizerName.setText(event.organizerName);
+            eventParticipantLimit.setText(event.participantLimit);
+            eventDescription.setText(event.eventDescription);
+            eventTime.setText(event.eventTime);
+            eventVenue.setText(event.eventvenue);
+            eventTag.setText(event.eventtag);
+        }
+    }
+
+    public void onClickDelete(View view) {
+        eventViewModel.deleteEvent(event.uid);
+        finish();
     }
 }

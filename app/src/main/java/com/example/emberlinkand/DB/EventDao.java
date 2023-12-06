@@ -18,8 +18,8 @@ public interface EventDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertEvent(Event... event);
 
-    @Delete
-    void delete(Event event);
+    @Query("DELETE FROM event WHERE uid = :uid")
+    void delete(int uid);
 
     @Query("SELECT * FROM event WHERE uid=:id")
     LiveData<Event> findByEventID(int id);
