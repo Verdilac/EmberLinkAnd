@@ -27,6 +27,10 @@ class EventRepository {
         return eventDao.findByEventID(eventID);
     }
 
+    LiveData<Event> getLastEvent() {
+        return eventDao.getLastEvent();
+    }
+
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     void insertEvent(Event event) {

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">EmberLinkAnd</string>
+    <string name="channel_name">My Channel</string>
+    <string name="channel_description">Channel Description</string>
+    <string name="my_channel">MY_CHANNEL</string>
+    <string name="upcoming_event">Upcoming event</string>
+    <string name="reminder_for">Hey, this is a reminder for</string>
+    <string name="on">on</string>
 </resources>

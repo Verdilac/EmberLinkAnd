@@ -25,6 +25,10 @@ public class EventViewModel extends AndroidViewModel {
         return eventRepository.getByEventID(eventID);
     }
 
+    public LiveData<Event> getLastEvent() {
+        return eventRepository.getLastEvent();
+    }
+
     public void insertEvent(Event event) {
         eventRepository.insertEvent(event);
     }
