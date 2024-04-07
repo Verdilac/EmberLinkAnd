@@ -9,6 +9,8 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +27,10 @@ public class DashBoardActivity extends AppCompatActivity implements EventListIte
 
     private EventListAdapter eventListAdapter;
     private EventViewModel eventViewModel;
+
+    private NotificationGenerator mNotificationGenerator;
+    private Handler mHandler;
+    private Runnable mRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,11 @@ public class DashBoardActivity extends AppCompatActivity implements EventListIte
                 startActivity(intent);
             }
         });
+
+        mNotificationGenerator = new NotificationGenerator(DashBoardActivity.this);
+        mHandler = new Handler(Looper.getMainLooper());
+
+        setupEventReminderNotification();
     }
 
     private  void  initRecyclerView() {
@@ -79,5 +90,31 @@ public class DashBoardActivity extends AppCompatActivity implements EventListIte
         Intent intent = new Intent(DashBoardActivity.this, EventDetailsActivity.class);
         intent.putExtra("EVENT_ID", eventListAdapter.getEventId(position));
         startActivity(intent);
+    }
+
+    private void setupEventReminderNotification() {
+        String eventTime = "13:00";
+        String eventName = "Dancing";
+        String notificationDescriptionText = getString(R.string.reminder_for) + eventName + getString(R.string.on) + eventTime;
+        mRunnable = new Runnable() {
+            @Override
+            public void run() {
+                mNotificationGenerator.sendNotification(
+                        getString(R.string.upcoming_event),
+                        notificationDescriptionText,
+                        R.drawable.notification_icon
+                );
+                mHandler.postDelayed(this, 30 * 1000); // 30 seconds
+            }
+        };
+
+        // Start sending notification
+        mHandler.postDelayed(mRunnable, 0);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove the callback when activity is destroyed to prevent memory leaks
+        mHandler.removeCallbacks(mRunnable);
     }
 }
