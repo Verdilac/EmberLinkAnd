@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -64,11 +65,11 @@ public class DashBoardActivity extends AppCompatActivity implements EventListIte
         setupEventReminderNotification();
     }
 
-    private  void  initRecyclerView() {
+    private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        DividerItemDecoration dividerItemDecoration  = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         eventListAdapter = new EventListAdapter(this, this);
@@ -93,28 +94,42 @@ public class DashBoardActivity extends AppCompatActivity implements EventListIte
     }
 
     private void setupEventReminderNotification() {
-        String eventTime = "13:00";
-        String eventName = "Dancing";
-        String notificationDescriptionText = getString(R.string.reminder_for) + eventName + getString(R.string.on) + eventTime;
-        mRunnable = new Runnable() {
+        // Runnable to send notification every 30 seconds
+
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                mNotificationGenerator.sendNotification(
-                        getString(R.string.upcoming_event),
-                        notificationDescriptionText,
-                        R.drawable.notification_icon
-                );
-                mHandler.postDelayed(this, 30 * 1000); // 30 seconds
+                eventViewModel.getLastEvent().observe(DashBoardActivity.this, event -> {
+
+                    if (event != null) {
+                        // Use event name and time to trigger notification
+                        String notificationDescriptionText = getString(R.string.reminder_for) + " " + event.eventName + " " + getString(R.string.on) + " " + event.eventTime;
+
+                        // Use event name and time to trigger notification
+                        mNotificationGenerator.sendNotification(
+                                getString(R.string.upcoming_event),
+                                notificationDescriptionText,
+                                R.drawable.notification_icon
+                        );
+                    } else {
+                        // No events found, handle accordingly (e.g., show a message or log)
+                        Log.d("Notification", "No events found");
+                    }
+                });
+
+                // Schedule next execution after 5 minutes (300,000 milliseconds)
+                mHandler.postDelayed(this, 5 * 60 * 1000);
             }
         };
 
         // Start sending notification
-        mHandler.postDelayed(mRunnable, 0);
+        mHandler.postDelayed(runnable, 0);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         // Remove the callback when activity is destroyed to prevent memory leaks
-        mHandler.removeCallbacks(mRunnable);
+        mHandler.removeCallbacksAndMessages(null);
     }
 }

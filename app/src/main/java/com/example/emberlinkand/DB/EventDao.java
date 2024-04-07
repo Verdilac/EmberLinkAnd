@@ -2,7 +2,6 @@ package com.example.emberlinkand.DB;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -23,6 +22,9 @@ public interface EventDao {
 
     @Query("SELECT * FROM event WHERE uid=:id")
     LiveData<Event> findByEventID(int id);
+
+    @Query("SELECT * FROM event ORDER BY uid DESC LIMIT 1")
+    LiveData<Event> getLastEvent();
 }
 
 
