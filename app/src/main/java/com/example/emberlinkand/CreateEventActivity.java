@@ -53,6 +53,9 @@ public class CreateEventActivity extends AppCompatActivity {
                 saveNewEvent(organizerNameInput.getText().toString(),eventNameInput.getText().toString(),eventParticipantLimitInput.getText().toString(),
                         eventTimeInput.getText().toString(),eventVenueInput.getText().toString(),eventDescriptionInput.getText().toString(),
                         eventTagInput.getText().toString());
+
+                Intent intent = new Intent(CreateEventActivity.this, RegularBadge.class);
+                startActivity(intent);
             }
         });
     }
