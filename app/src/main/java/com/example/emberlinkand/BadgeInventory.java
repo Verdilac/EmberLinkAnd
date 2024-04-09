@@ -1,13 +1,18 @@
 package com.example.emberlinkand;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.emberlinkand.DB.EventViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +20,7 @@ public class BadgeInventory extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private BadgeAdapter badgeAdapter;
+    private EventViewModel eventViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +41,27 @@ public class BadgeInventory extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        badgeAdapter = new BadgeAdapter(getBadgeList(), this);
-        recyclerView.setAdapter(badgeAdapter);
+
+        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
+        eventViewModel.getEventCount().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer count) {
+                badgeAdapter = new BadgeAdapter(getBadgeList(count), BadgeInventory.this);
+                recyclerView.setAdapter(badgeAdapter);
+            }
+        });
     }
 
-    // Dummy data for testing
-    private List<Badge> getBadgeList() {
+    // Generate badge list based on event count
+    private List<Badge> getBadgeList(int eventCount) {
         List<Badge> badges = new ArrayList<>();
-        badges.add(new Badge(R.drawable.regular_badge_photo));
-        // Add more badges as needed
+        if (eventCount >= 5) {
+            badges.add(new Badge(R.drawable.regular_badge_photo));
+            badges.add(new Badge(R.drawable.premium_badge_photo));
+        } else if (eventCount >= 1 && eventCount <= 4) {
+            badges.add(new Badge(R.drawable.regular_badge_photo));
+        }
+        // You can add more conditions here if needed
         return badges;
     }
 }
