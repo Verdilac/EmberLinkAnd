@@ -64,12 +64,32 @@ public class CreateEventActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveNewEvent(organizerNameInput.getText().toString(),eventNameInput.getText().toString(),eventParticipantLimitInput.getText().toString(),
-                        eventTimeInput.getText().toString(),eventVenueInput.getText().toString(),eventDescriptionInput.getText().toString(),
-                        eventTagInput.getText().toString());
+                final String organizerName = organizerNameInput.getText().toString();
+                final String eventName = eventNameInput.getText().toString();
+                final String eventParticipantLimit = eventParticipantLimitInput.getText().toString();
+                final String time = eventTimeInput.getText().toString();
+                final String venue = eventVenueInput.getText().toString();
+                final String description = eventDescriptionInput.getText().toString();
+                final String tag = eventTagInput.getText().toString();
 
-                Intent intent = new Intent(CreateEventActivity.this, PremiumBadge.class);
-                startActivity(intent);
+                saveNewEvent(organizerName, eventName, eventParticipantLimit, time, venue, description, tag);
+
+                // Check the count of events
+                eventViewModel.getEventCount().observe(CreateEventActivity.this, new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer count) {
+                        if (count == 1) {
+                            Intent intent = new Intent(CreateEventActivity.this, RegularBadge.class);
+                            startActivity(intent);
+                        } else if (count == 5) {
+                            Intent intent = new Intent(CreateEventActivity.this, PremiumBadge.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(CreateEventActivity.this, DashBoardActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         });
     }
