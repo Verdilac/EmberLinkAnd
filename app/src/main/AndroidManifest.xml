@@ -15,6 +15,9 @@
         android:theme="@style/Theme.EmberLinkAnd"
         tools:targetApi="31">
         <activity
+            android:name=".BadgeInventory"
+            android:exported="false" />
+        <activity
             android:name=".PremiumBadge"
             android:exported="false" />
         <activity
