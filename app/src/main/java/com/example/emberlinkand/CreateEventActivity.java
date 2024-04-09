@@ -1,6 +1,7 @@
 package com.example.emberlinkand;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -17,6 +18,8 @@ import com.example.emberlinkand.DB.EventViewModel;
 
 public class CreateEventActivity extends AppCompatActivity {
 
+    private EventViewModel eventViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +32,25 @@ public class CreateEventActivity extends AppCompatActivity {
         final EditText eventVenueInput = findViewById(R.id.editTextVenue);
         final EditText eventDescriptionInput = findViewById(R.id.editTextDescription);
         final EditText eventTagInput = findViewById(R.id.editTextTags);
-
-
         Button submitButton = findViewById(R.id.SubmitBtn);
+
+        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
+
+        // Observe event count
+        eventViewModel.getEventCount().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer count) {
+                // Update toolbar text to include event count
+                TextView toolbarText = findViewById(R.id.toolbar_text);
+                String toolbarTitle = "Add New Event: " + count;
+                toolbarText.setText(toolbarTitle);
+            }
+        });
 
         //toolbar back button
         ImageView backButton = findViewById(R.id.toolbar_back_icon);
-        TextView toolbarText = findViewById(R.id.toolbar_text);
-        toolbarText.setText("Add New Event");
+//        TextView toolbarText = findViewById(R.id.toolbar_text);
+//        toolbarText.setText("Add New Event");
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +68,7 @@ public class CreateEventActivity extends AppCompatActivity {
                         eventTimeInput.getText().toString(),eventVenueInput.getText().toString(),eventDescriptionInput.getText().toString(),
                         eventTagInput.getText().toString());
 
-                Intent intent = new Intent(CreateEventActivity.this, RegularBadge.class);
+                Intent intent = new Intent(CreateEventActivity.this, PremiumBadge.class);
                 startActivity(intent);
             }
         });
