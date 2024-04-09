@@ -43,6 +43,24 @@ public class DashBoardActivity extends AppCompatActivity implements EventListIte
         TextView createEventTextView = findViewById(R.id.dashBoardCreateEventBtn);
         TextView seeAllEventList = findViewById(R.id.seeAllEventsBtn);
 
+        // Badge
+        ImageView badgeImage = findViewById(R.id.badgeImage);
+        TextView badgeText = findViewById(R.id.badgeText);
+
+
+        // Badge Intent
+        View.OnClickListener badgeClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Navigate to BadgeInventory.class
+                Intent intent = new Intent(getApplicationContext(), BadgeInventory.class);
+                startActivity(intent);
+            }
+        };
+
+        badgeImage.setOnClickListener(badgeClickListener);
+        badgeText.setOnClickListener(badgeClickListener);
+
         createEventTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
