@@ -6,4 +6,7 @@
     <string name="upcoming_event">Upcoming event</string>
     <string name="reminder_for">Hey, this is a reminder for</string>
     <string name="on">on</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>
