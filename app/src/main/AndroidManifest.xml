@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -24,6 +25,15 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/event_widget_info" />
         </receiver>
+        <activity
+            android:name=".BadgeInventory"
+            android:exported="false" />
+        <activity
+            android:name=".PremiumBadge"
+            android:exported="false" />
+        <activity
+            android:name=".RegularBadge"
+            android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
             android:exported="false" />

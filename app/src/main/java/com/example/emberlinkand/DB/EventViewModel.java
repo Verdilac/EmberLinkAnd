@@ -10,15 +10,21 @@ import java.util.List;
 public class EventViewModel extends AndroidViewModel {
     private EventRepository eventRepository;
     private final LiveData<List<Event>> allEvents;
+    private LiveData<Integer> eventCount;
 
     public EventViewModel (Application application) {
         super(application);
         eventRepository = new EventRepository(application);
         allEvents = eventRepository.getAllEvents();
+        eventCount = eventRepository.getEventCount();
     }
 
     public LiveData<List<Event>> getAllEvents() {
         return allEvents;
+    }
+
+    public LiveData<Integer> getEventCount() {
+        return eventCount;
     }
 
     public LiveData<Event> getByEventID(int eventID) {

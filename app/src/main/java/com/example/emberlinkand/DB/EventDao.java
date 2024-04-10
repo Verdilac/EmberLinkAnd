@@ -25,6 +25,9 @@ public interface EventDao {
 
     @Query("SELECT * FROM event ORDER BY uid DESC LIMIT 1")
     LiveData<Event> getLastEvent();
+
+    @Query("SELECT COUNT(*) FROM event")
+    LiveData<Integer> getEventCount();
 }
 
 
